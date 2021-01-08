@@ -49,7 +49,9 @@ const Activity = ({ activityData }) => {
         className="mt-5 text-center text-white p-5 rounded-lg"
         style={{ background: "#2C974B" }}
       >
-        <a href="https://github.com/ozorku/git-profile">Visit repo</a>
+        <a href="https://github.com/lamilekan263/chiji14assessment">
+          Visit repo
+        </a>
       </footer>
     </div>
   );

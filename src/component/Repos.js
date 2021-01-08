@@ -203,66 +203,70 @@ const langColors = {
   nesC: "#94B0C7",
 };
 
-const Repos = ({ repoData }) => {
+const Repos = ({ repoData, value, onChangeHandler }) => {
   return (
     <div className="w-full lg:w-5/12 mt-10 lg:mt-0 relative">
-  
       <div className="lg:absolute t-0 w-full lg:h-screen">
         <div className="text-2xl font-bold">Repositories</div>
-      <form action="">
-        <input  type ="text" placeholder="Find a repository..." className="w-full p-3 shadow-md outline-none" />
-      </form>
+        <input
+            type="text"
+            placeholder="Find a repository..."
+            className="w-full p-3 shadow-md outline-none"
+            value={value}
+            onChange={onChangeHandler}
+          />
+       
         <div className="overflow-y-auto mt-5" style={{ height: "100%" }}>
           {repoData &&
-                      repoData.map((repo) => {
-                return(
+            Array.isArray(repoData) &&
+            repoData.map((repo) => {
+              return (
                 <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={repo.id}
-                  >
-                    <div className="mb-5 rounded-lg w-full bg-white border shadow-lg p-3 md:p-5 hover:shadow-md hover:bg-gray-100 cursor-pointer">
-                      <div className="font-bold">{repo.name}</div>
-                      <div className="text-gray-600 mt-1 text-sm">
-                        {repo.description}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={repo.id}
+                >
+                  <div className="mb-5 rounded-lg w-full bg-white border shadow-lg p-3 md:p-5 hover:shadow-md hover:bg-gray-100 cursor-pointer">
+                    <div className="font-bold">{repo.name}</div>
+                    <div className="text-gray-600 mt-1 text-sm">
+                      {repo.description}
+                    </div>
+                    <div className="mt-8 flex items-center text-sm text-gray-600">
+                      <div className="flex items-center mr-5">
+                        <div
+                          className="w-3 h-3 rounded-full mr-1"
+                          style={{
+                            backgroundColor: langColors[repo.language],
+                          }}
+                        ></div>
+                        <span>{repo.language}</span>
                       </div>
-                      <div className="mt-8 flex items-center text-sm text-gray-600">
-                        <div className="flex items-center mr-5">
-                          <div
-                            className="w-3 h-3 rounded-full mr-1"
-                            style={{
-                              backgroundColor: langColors[repo.language],
-                            }}
-                          ></div>
-                          <span>{repo.language}</span>
-                        </div>
-                        <div className="flex items-center mr-5">
-                          <img
-                            src={Star}
-                            alt="star"
-                            width="16px"
-                            className="mr-1"
-                          />
-                          <span>{repo.watchers}</span>
-                        </div>
-                        <div className="flex items-center mr-5">
-                          <img
-                            src={Fork}
-                            alt="fork"
-                            width="16px"
-                            className="mr-1"
-                          />
-                          <span>{repo.forks}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span>{repo.size} KB</span>
-                        </div>
+                      <div className="flex items-center mr-5">
+                        <img
+                          src={Star}
+                          alt="star"
+                          width="16px"
+                          className="mr-1"
+                        />
+                        <span>{repo.watchers}</span>
+                      </div>
+                      <div className="flex items-center mr-5">
+                        <img
+                          src={Fork}
+                          alt="fork"
+                          width="16px"
+                          className="mr-1"
+                        />
+                        <span>{repo.forks}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span>{repo.size} KB</span>
                       </div>
                     </div>
-                  </a>
-                
-                )
+                  </div>
+                </a>
+              );
             })}
         </div>
       </div>
