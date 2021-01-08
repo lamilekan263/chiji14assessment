@@ -20,11 +20,11 @@ function App() {
   const handlerChange = e => setSearchRepo(e.target.value);
   function search (repos) {
     return repos.filter(
-      (repo) => repo.name.toLowerCase().indexOf(searchRepo) !== -1
+      (repo) => repo.name.toUpperCase().indexOf(searchRepo) !== -1
     );
   }
 
-  console.log(searchRepo)
+ 
   
   // useEffect to search for my data
   useEffect(() => {
@@ -51,7 +51,7 @@ function App() {
     // fetch new repos
     
   }, [searchRepo]);
-console.log(repoData);
+
   return (
     <>
       <Nav />
